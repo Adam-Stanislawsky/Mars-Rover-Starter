@@ -11,6 +11,10 @@ describe("Command class", function() {
 
 // TEST 2
 
+test("constructor sets command type", function() {
+  let testCommand = new Command ("aCommand")
+  expect(testCommand.commandType).toEqual("aCommand");
+});
 
 // TEST 3
 
