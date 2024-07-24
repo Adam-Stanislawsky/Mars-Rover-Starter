@@ -18,4 +18,11 @@ test("constructor sets command type", function() {
 
 // TEST 3
 
+test("constructor sets command type", function() {
+  let testCommand = new Command ("aCommand", 400)
+  expect(testCommand.value).toEqual(400);
+});
+
+
+
 });
