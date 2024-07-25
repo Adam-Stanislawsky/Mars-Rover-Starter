@@ -26,5 +26,10 @@ test("constructor sets name", function() {
 
 // TEST 6
 
+test("contains a commands array passed into the constructor as the 2nd argument", function() {
+    let testMessage = new Message ("aMessage", [])
+    expect(testMessage.commands).toEqual([]);
+  });
+
 
 });

@@ -5,7 +5,7 @@ class Message {
       if (!name) {
         throw Error("Name is required.");
       }
-      this.commands = [commands];
+      this.commands = [];
     }
 
 }
