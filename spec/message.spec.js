@@ -6,4 +6,22 @@ const Command = require('../command.js');
 
 describe("Message class", function() {
 
+
+// TEST 4
+
+  test("throws error if a Name is NOT passed into constructor as the first parameter", function() {
+    expect( function() { new Message();}).toThrow(new Error('Name is required.'));
+  });
+
+
+
+// TEST 5
+
+
+
+
+
+// TEST 6
+
+
 });
