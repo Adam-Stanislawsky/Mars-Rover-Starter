@@ -11,7 +11,11 @@ class Rover {
     }
 
    receiveMessage(message){
-
+      // for(let i = 0; i < message.commands.length; i++){
+      //    if (message.commands[i].commandType === "MOVE"){
+      //       this.position = message.commands[i].value
+      //    }
+      // }
       return message;
    }
 

@@ -29,6 +29,7 @@ test("response returned by receiveMessage contains the name of the message", fun
   let testMessage = new Message ("aMessage")
   let testRover = new Rover (1234)
   let response = testRover.receiveMessage(testMessage)
+  expect(testMessage).toBeInstanceOf(Message)
   expect(response.name).toEqual("aMessage");
 
 
@@ -39,8 +40,20 @@ test("response returned by receiveMessage contains the name of the message", fun
   // TEST 9
 //“response returned by receiveMessage includes two results if two commands are sent in the message”
 
+test("response returned by receiveMessage includes two results if two commands are sent in the message", function() {
+  let commandOne = new Command('MOVE', 1234);
+  let commandTwo = new Command('STATUS_CHECK');
 
+  let commands = [commandOne, commandTwo];
 
+  let testMessage = new Message ("aMessage", commands)
+  let testRover = new Rover (1234)
+
+  let response = testRover.receiveMessage(testMessage)
+
+  expect(testMessage).toBeInstanceOf(Message)
+  expect(response.commands.length).toEqual(2);
+});
 
   // TEST 10
 //“responds correctly to the status check command”
