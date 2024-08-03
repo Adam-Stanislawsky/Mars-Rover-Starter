@@ -1,29 +1,50 @@
 class Rover {
    // Write code here!
    constructor(position) {
-      this.position = Number(position); //will be a number representing the rover's position
-      // if (!position) {
-      //   throw Error("Position is required.");
-      // }
+      this.position = position; 
       this.mode = 'NORMAL';
       this.generatorWatts = 110;
-
     }
 
+    
+
    receiveMessage(message){
-      // for(let i = 0; i < message.commands.length; i++){
-      //    if (message.commands[i].commandType === "MOVE"){
-      //       this.position = message.commands[i].value
-      //    }
-      // }
-      return message;
+      
+      let response = {
+         message: message.name,
+         results: [],
+      };
+      
+      for (let i = 0; i < message.commands.length; i++) {
+         let command = message.commands[i];
+   
+         if (command.commandType === 'STATUS_CHECK') {
+           let roverStatus = {
+             mode: this.mode,
+             generatorWatts: this.generatorWatts,
+             position: this.position,
+           };
+           response.results.push({ completed: true, roverStatus: roverStatus });
+   
+         } else if (command.commandType === 'MOVE') {
+           if (this.mode === 'LOW_POWER') {
+             response.results.push({ completed: false });
+           } else {
+             this.position = command.value;
+             response.results.push({ completed: true });
+           }
+   
+         } else if (command.commandType === 'MODE_CHANGE') {
+           this.mode = command.value;
+           response.results.push({ completed: true });
+         }
+       }
+
+      return response; 
    }
 
-
-
-
-
-
 }
+
+
 
 module.exports = Rover;
